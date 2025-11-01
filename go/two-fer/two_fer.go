@@ -5,6 +5,8 @@
 // https://golang.org/doc/effective_go.html#commentary
 package twofer
 
+import "fmt"
+
 // ShareWith should have a comment documenting it.
 func ShareWith(name string) string {
 	// Write some code here to pass the test suite.
@@ -15,5 +17,5 @@ func ShareWith(name string) string {
 	if name == "" {
 		name = "you"
 	}
-	return "One for " + name + ", one for me."
+	return fmt.Sprintf("One for %s, one for me.", name)
 }
