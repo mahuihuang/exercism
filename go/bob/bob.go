@@ -16,30 +16,24 @@ func Hey(remark string) string {
 	// Then remove all the stock comments.
 	// They're here to help you get started but they only clutter a finished solution.
 	// If you leave them in, reviewers may protest!
-	trimRemark := strings.TrimSpace(remark)
+	remark = strings.TrimSpace(remark)
 	switch {
-	case strings.Contains(trimRemark, " I "):
+	case strings.Contains(remark, " I "):
 		return "Whoa, chill out!"
-	case strings.ContainsFunc(trimRemark, func(rune) bool {
-		flag := false
-		for _, char := range trimRemark {
-			if unicode.IsLetter(char) {
-				if unicode.IsUpper(char) {
-					flag = true
-				} else {
-					return false
-				}
-			}
+		// 匹配句子中的所有为大写的字母
+	case strings.ContainsFunc(remark, func(rune) bool {
+		if strings.IndexFunc(remark, unicode.IsLetter) == -1 {
+			return false
 		}
-		return flag
+		return strings.ToUpper(remark) == remark
 	}):
-		if strings.HasSuffix(trimRemark, "?") {
+		if strings.HasSuffix(remark, "?") {
 			return "Calm down, I know what I'm doing!"
 		}
 		return "Whoa, chill out!"
-	case strings.HasSuffix(trimRemark, "?"):
+	case strings.HasSuffix(remark, "?"):
 		return "Sure."
-	case trimRemark == "":
+	case remark == "":
 		return "Fine. Be that way!"
 	default:
 		return "Whatever."
