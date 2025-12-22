@@ -5,6 +5,12 @@ import (
 	"unicode"
 )
 
+type shift int
+
+type vigenere struct {
+	key string
+}
+
 // Define the shift and vigenere types here.
 // Both types should satisfy the Cipher interface.
 func NewCaesar() Cipher {
